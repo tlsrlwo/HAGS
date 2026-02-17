@@ -4117,200 +4117,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 269186923}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!1 &372652165
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 372652167}
-  - component: {fileID: 372652166}
-  - component: {fileID: 372652168}
-  - component: {fileID: 372652171}
-  - component: {fileID: 372652169}
-  - component: {fileID: 372652170}
-  m_Layer: 0
-  m_Name: Player
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!212 &372652166
-SpriteRenderer:
-  serializedVersion: 2
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 372652165}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 62bd2a34e13aaaf4290e32f17b7c6138, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 10
-  m_MaskInteraction: 0
-  m_Sprite: {fileID: 1314859886, guid: dc3a85c8a43bad749857021c84053229, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_SpriteSortPoint: 0
---- !u!4 &372652167
+--- !u!4 &372652167 stripped
 Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 6589834061405969092, guid: d30d85a1d9a42ee449f9249265a76ae2, type: 3}
+  m_PrefabInstance: {fileID: 2373772111991710715}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 372652165}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.0000004768371, z: -0, w: 1}
-  m_LocalPosition: {x: -15.59, y: -2.353, z: -24.2}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &372652168
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 372652165}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
-  m_Actions: {fileID: -944628639613478452, guid: 876bbab8de0a26f46a6251f0cccce520, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Player_PC
-  m_DefaultActionMap: PlayerMap
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
---- !u!95 &372652169
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 372652165}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ed52c45f8bd07b04188034264b0e8b7e, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
---- !u!114 &372652170
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 372652165}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd7da7a52b2c65a418f86f2b275ee7c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GhostStory.PlayerMovement
-  CCon: {fileID: 372652171}
-  Anim: {fileID: 372652169}
-  walkSpeed: 1
-  runSpeed: 3
-  _sphereRadius: 0.05
-  _sphereYOffset: 0.35
-  _groundLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  _gravity: -9.81
---- !u!143 &372652171
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 372652165}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Height: 0.7
-  m_Radius: 0.15
-  m_SlopeLimit: 45
-  m_StepOffset: 0.1
-  m_SkinWidth: 0.0001
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &375487825
 GameObject:
   m_ObjectHideFlags: 0
@@ -4957,7 +4768,7 @@ Transform:
   m_GameObject: {fileID: 437213792}
   serializedVersion: 2
   m_LocalRotation: {x: 0.13986443, y: 0.0000122045885, z: -0.000086402426, w: 0.9901707}
-  m_LocalPosition: {x: -15.59, y: -0.69112396, z: -29.965256}
+  m_LocalPosition: {x: -19.79, y: -0.69112396, z: -27.905254}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9707,8 +9518,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4.955431, y: 1, z: 1.0979481}
-  m_Center: {x: -0.01918888, y: 0, z: -3.7959547}
+  m_Size: {x: 4.955431, y: 1, z: 2.2446785}
+  m_Center: {x: -0.01918888, y: 0, z: -3.2225895}
 --- !u!4 &882031571
 Transform:
   m_ObjectHideFlags: 0
@@ -11217,6 +11028,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1042395522}
   - component: {fileID: 1042395521}
+  - component: {fileID: 1042395523}
   m_Layer: 0
   m_Name: CityBackground
   m_TagString: Untagged
@@ -11298,6 +11110,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &1042395523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1042395520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80fa932a9c67b05408e2dac6013dc57d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GhostStory.CityParallaxBackground
+  cam: {fileID: 0}
+  parallxValue: 0.3
+  negativeValue: -4
 --- !u!1 &1048511082
 GameObject:
   m_ObjectHideFlags: 0
@@ -16510,6 +16337,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1587238595}
   - component: {fileID: 1587238594}
+  - component: {fileID: 1587238596}
   m_Layer: 0
   m_Name: CityBackground
   m_TagString: Untagged
@@ -16591,6 +16419,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1587238596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1587238593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80fa932a9c67b05408e2dac6013dc57d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GhostStory.CityParallaxBackground
+  cam: {fileID: 0}
+  parallxValue: 0.3
+  negativeValue: -4
 --- !u!1 &1593716304
 GameObject:
   m_ObjectHideFlags: 0
@@ -22616,7 +22459,7 @@ Transform:
   m_GameObject: {fileID: 2097343473}
   serializedVersion: 2
   m_LocalRotation: {x: 0.13986443, y: 0.0000122045885, z: -0.000086402426, w: 0.9901707}
-  m_LocalPosition: {x: -15.59, y: -0.69112396, z: -29.965256}
+  m_LocalPosition: {x: -18.686905, y: -0.69112396, z: -28.29564}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -25322,6 +25165,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6936404185168261264}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2373772111991710715
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4626110247080134711, guid: d30d85a1d9a42ee449f9249265a76ae2, type: 3}
+      propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6589834061405969092, guid: d30d85a1d9a42ee449f9249265a76ae2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -19.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 6589834061405969092, guid: d30d85a1d9a42ee449f9249265a76ae2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.353
+      objectReference: {fileID: 0}
+    - target: {fileID: 6589834061405969092, guid: d30d85a1d9a42ee449f9249265a76ae2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -22.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 6589834061405969092, guid: d30d85a1d9a42ee449f9249265a76ae2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6589834061405969092, guid: d30d85a1d9a42ee449f9249265a76ae2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6589834061405969092, guid: d30d85a1d9a42ee449f9249265a76ae2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.0000004768371
+      objectReference: {fileID: 0}
+    - target: {fileID: 6589834061405969092, guid: d30d85a1d9a42ee449f9249265a76ae2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6589834061405969092, guid: d30d85a1d9a42ee449f9249265a76ae2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6589834061405969092, guid: d30d85a1d9a42ee449f9249265a76ae2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6589834061405969092, guid: d30d85a1d9a42ee449f9249265a76ae2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d30d85a1d9a42ee449f9249265a76ae2, type: 3}
 --- !u!23 &2484203914387175776
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -27757,7 +27657,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6622260102954450642}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 9000000, guid: d5d00ccd3039d5647aa9b7caa185d1d4, type: 3}
   m_Controller: {fileID: 0}
   m_CullingMode: 0
@@ -27798,6 +27698,7 @@ GameObject:
   - component: {fileID: 6622260102955311826}
   - component: {fileID: 6622260102956441618}
   - component: {fileID: 6622260102944918802}
+  - component: {fileID: 6622260102956441619}
   m_Layer: 0
   m_Name: CityBackground2
   m_TagString: Untagged
@@ -27862,6 +27763,21 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &6622260102956441619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6622260102954450642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80fa932a9c67b05408e2dac6013dc57d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GhostStory.CityParallaxBackground
+  cam: {fileID: 0}
+  parallxValue: 0.3
+  negativeValue: -4
 --- !u!33 &6736763872245812173
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -29244,7 +29160,7 @@ SceneRoots:
   - {fileID: 437213795}
   - {fileID: 882031571}
   - {fileID: 2092843657}
-  - {fileID: 372652167}
+  - {fileID: 2373772111991710715}
   - {fileID: 928610193}
   - {fileID: 269186923}
   - {fileID: 1587238595}
