@@ -16,6 +16,9 @@ namespace GhostStory
         [Header("이동 변수")]
         public float walkSpeed;
         public float runSpeed;
+        public bool isRunPressed => _isRunPressed;
+
+        private bool _isRunPressed;
 
 
         [Header("땅 중력")]
@@ -53,6 +56,11 @@ namespace GhostStory
         private void OnMove(InputValue value)
         {
             InputDir = value.Get<Vector2>();
+        }
+
+        private void OnRun(InputValue value)
+        {
+            _isRunPressed = value.isPressed;
         }
 
         private void Update()

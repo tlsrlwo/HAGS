@@ -11,7 +11,12 @@ namespace GhostStory
         }
         public override void UpdateState(PlayerMovement player)
         {
-            if (!Keyboard.current.leftShiftKey.isPressed)
+            /* if (!Keyboard.current.leftShiftKey.isPressed)
+            {
+                player.SwitchState(player.walkState);
+                return;
+            } */
+            if (!player.isRunPressed)
             {
                 player.SwitchState(player.walkState);
                 return;
@@ -26,7 +31,7 @@ namespace GhostStory
         }
         public override void ExitState(PlayerMovement player)
         {
-            
+
         }
     }
 }

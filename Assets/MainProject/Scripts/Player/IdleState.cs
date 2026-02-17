@@ -13,7 +13,8 @@ namespace GhostStory
         {
             if (player.InputDir.magnitude > 0.01f)
             {
-                if (Keyboard.current.leftShiftKey.isPressed) player.SwitchState(player.runState);
+                //if (Keyboard.current.leftShiftKey.isPressed) player.SwitchState(player.runState);
+                if (player.isRunPressed) player.SwitchState(player.runState);
                 else player.SwitchState(player.walkState);
             }
         }
