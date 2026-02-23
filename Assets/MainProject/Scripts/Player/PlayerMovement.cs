@@ -12,13 +12,13 @@ namespace GhostStory
         public CharacterController CCon;
         public Animator Anim;
 
+        public PlayerInputReader playerInput;
+
 
         [Header("이동 변수")]
         public float walkSpeed;
         public float runSpeed;
-        public bool isRunPressed => _isRunPressed;
-
-        private bool _isRunPressed;
+        public bool isRunPressed => playerInput.IsRunPressed;
 
 
         [Header("땅 중력")]
@@ -27,7 +27,11 @@ namespace GhostStory
         [SerializeField] private LayerMask _groundLayer;
         [SerializeField] private float _gravity = -9.81f;
 
-        public Vector2 InputDir { get; private set; }
+        public Vector2 InputDir => playerInput.MoveInput;
+
+        public float lastMoveX;
+        public float lastMoveZ;
+
         private Vector3 _yVelocity;
         Vector3 spherePos;
 
@@ -44,25 +48,15 @@ namespace GhostStory
         {
             if (CCon == null) CCon = GetComponent<CharacterController>();
             if (Anim == null) Anim = GetComponent<Animator>();
+
+            playerInput = GetComponent<PlayerInputReader>();
         }
 
         private void Start()
         {
             SwitchState(idleState);
         }
-
-
-        // On + Move(InputSystem 에 있는 action 중에 Move 라는 이름을 찾음) 함수로 InputAction 에서 해당 이름을 찾아서 옴
-        private void OnMove(InputValue value)
-        {
-            InputDir = value.Get<Vector2>();
-        }
-
-        private void OnRun(InputValue value)
-        {
-            _isRunPressed = value.isPressed;
-        }
-
+        
         private void Update()
         {
             CalculateGravity();
@@ -94,6 +88,9 @@ namespace GhostStory
                 Anim.SetFloat("xInput", InputDir.x);
                 Anim.SetFloat("zInput", InputDir.y);
             }
+
+            lastMoveX = InputDir.x;
+            lastMoveZ = InputDir.y;
         }
 
         // 공중에 떠있는지 확인

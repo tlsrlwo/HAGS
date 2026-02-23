@@ -14,9 +14,11 @@ GameObject:
   - component: {fileID: 5330823903043447057}
   - component: {fileID: 8147833320044520656}
   - component: {fileID: 6060881547732365396}
+  - component: {fileID: 7938202622524813272}
+  - component: {fileID: 3210200148232316869}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -119,7 +121,35 @@ MonoBehaviour:
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4626110247080134711}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 6bb136cc-8095-4ea4-b4e7-a90903c73244
+    m_ActionName: 'PlayerMap/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9a57e0ba-f0ea-4887-8b2f-3b05bb237ba5
+    m_ActionName: 'PlayerMap/Run[/Keyboard/leftShift]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 521b32e1-6739-4009-b504-edfec4d115e5
+    m_ActionName: 'PlayerMap/Interact[/Keyboard/e]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5f699492-e3a8-41f8-b865-73c257ba0947
+    m_ActionName: 'PlayerUI/Submit[/Keyboard/e,/Keyboard/enter]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Player_PC
   m_DefaultActionMap: PlayerMap
@@ -186,6 +216,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GhostStory.PlayerMovement
   CCon: {fileID: 5330823903043447057}
   Anim: {fileID: 8147833320044520656}
+  playerInput: {fileID: 0}
   walkSpeed: 1
   runSpeed: 3
   _sphereRadius: 0.05
@@ -194,3 +225,33 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   _gravity: -9.81
+  lastMoveX: 0
+  lastMoveZ: 0
+--- !u!114 &7938202622524813272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4626110247080134711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a259991a3dae4042b7aa070a28782dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GhostStory.PlayerInteract
+  interactRange: 1
+  interactLayer:
+    serializedVersion: 2
+    m_Bits: 512
+--- !u!114 &3210200148232316869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4626110247080134711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e9b79187c94d484aa48e9941d924bab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GhostStory.PlayerInputReader

@@ -12,7 +12,7 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - _ALPHAPREMULTIPLY_ON
+  - _ALPHATEST_ON
   - _SURFACE_TYPE_TRANSPARENT
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -64,10 +64,10 @@ Material:
     m_Ints: []
     m_Floats:
     - _AddPrecomputedVelocity: 0
-    - _AlphaClip: 0
+    - _AlphaClip: 1
     - _AlphaToMask: 0
     - _Blend: 0
-    - _BlendModePreserveSpecular: 1
+    - _BlendModePreserveSpecular: 0
     - _BumpScale: 1
     - _Cull: 2
     - _Cutoff: 0.5
@@ -81,14 +81,14 @@ Material:
     - _SmoothnessSource: 0
     - _SpecSource: 0
     - _SpecularHighlights: 1
-    - _SrcBlend: 1
+    - _SrcBlend: 5
     - _SrcBlendAlpha: 1
     - _Surface: 1
     - _XRMotionVectorsPass: 1
     - _ZWrite: 0
     m_Colors:
     - _BaseColor: {r: 0.5188679, g: 0.5188679, b: 0.5188679, a: 1}
-    - _Color: {r: 0.51886785, g: 0.51886785, b: 0.51886785, a: 1}
+    - _Color: {r: 0.5188679, g: 0.5188679, b: 0.5188679, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
   m_BuildTextureStacks: []
