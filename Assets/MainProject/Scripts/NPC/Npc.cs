@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 
 namespace GhostStory
@@ -8,8 +9,16 @@ namespace GhostStory
         public string npcName;
         public Sprite npcSprite;
 
+        private NpcAnimationController _npcAnim;
+
+
         [Header("대사 모음")]
         public List<DialogueSO> allDialogues = new List<DialogueSO>();
+
+        private void Awake()
+        {
+            _npcAnim = GetComponent<NpcAnimationController>();
+        }
 
         public DialogueSO GetRandomDialogue()
         {
@@ -34,6 +43,12 @@ namespace GhostStory
             if (selectedDialogue != null)
             {
                 DialogueManager.Instance.StartDialogue(this, selectedDialogue);
+            }
+
+            // Interact 와 동시에 플레이어를 향하게 방향을 돌림
+            if(_npcAnim != null && player != null)
+            {
+                _npcAnim.LookAtPlayer(player.transform.position);
             }
         }
     }
