@@ -67,5 +67,5 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "HAGS.slnx"
+    "dotnet.defaultSolution": "Hired at Ghost Story.slnx"
 }

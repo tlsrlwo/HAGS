@@ -71,6 +71,7 @@
   <Project Path="Unity.Services.Core.Configuration.Editor.csproj" />
   <Project Path="Unity.Services.Core.Configuration.csproj" />
   <Project Path="Unity.AI.Generators.UI.csproj" />
+  <Project Path="Unity.InternalAPIEditorBridgeDev.001.csproj" />
   <Project Path="Unity.Services.Core.Environments.Internal.csproj" />
   <Project Path="Unity.InputSystem.ForUI.csproj" />
   <Project Path="Unity.Services.Core.Scheduler.csproj" />
@@ -89,6 +90,7 @@
   <Project Path="Unity.AI.Generators.UI.AIDropdownIntegrations.csproj" />
   <Project Path="Unity.Services.Core.Threading.csproj" />
   <Project Path="Unity.AI.Material.Srp.csproj" />
+  <Project Path="Unity.Play.Publisher.Editor.csproj" />
   <Project Path="Unity.Settings.Editor.csproj" />
   <Project Path="Unity.InputSystem.TestFramework.csproj" />
   <Project Path="UnityEditor.XR.LegacyInputHelpers.csproj" />
@@ -101,6 +103,7 @@
   <Project Path="Unity.2D.Enhancers.Editor.AIBridge.csproj" />
   <Project Path="Unity.Services.Core.Analytics.csproj" />
   <Project Path="Unity.AI.Generators.Contexts.csproj" />
+  <Project Path="Unity.EditorCoroutines.Editor.csproj" />
   <Project Path="Unity.AI.Generators.Asset.csproj" />
   <Project Path="UnityEngine.Purchasing.AppleStub.csproj" />
   <Project Path="UnityEngine.Purchasing.AppleCore.csproj" />
