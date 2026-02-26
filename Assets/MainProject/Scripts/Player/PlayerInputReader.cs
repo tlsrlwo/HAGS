@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,6 +9,9 @@ namespace GhostStory
         // Read-Only 변수들
         public Vector2 MoveInput { get; private set; }
         public bool IsRunPressed { get; private set; }
+
+        // 이벤트 추가하
+        public event Action<Vector2> OnNavigationEvent;
 
         // 플레이어 이동
         private void OnMove(InputValue value)
@@ -30,8 +34,15 @@ namespace GhostStory
             if (DialogueManager.Instance.isDialogueActive)
             {
                 Debug.Log("[PlayerInputReader] Submit 입력 감지");
-                DialogueManager.Instance.DisplayNextLine();
+                DialogueManager.Instance.HandleSubmit();
             }
+        }
+
+        // UI 방향키 입력 
+        private void OnNavigate(InputValue value)
+        {
+            // 호출되면 입력값을 전달해줄 이벤트
+            OnNavigationEvent?.Invoke(value.Get<Vector2>());
         }
 
         private void OnEnable()

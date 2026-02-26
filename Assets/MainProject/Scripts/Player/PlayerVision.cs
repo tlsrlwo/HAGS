@@ -7,7 +7,7 @@ namespace GhostStory
         [Header("시야 거리")]
         [SerializeField] private float _viewDistance = 5f;
         [Range(0, 180)]
-        [SerializeField] private float _viewAngle = 90f;
+        [SerializeField] private float _viewAngle = 110f;
 
 
         [SerializeField] private LayerMask _obstacleLayer;

@@ -38,7 +38,7 @@ namespace GhostStory
                 {
                     string targetCat = "H_" + currentCat;
                     _sResolver.SetCategoryAndLabel(targetCat, currentLabel);
-                    Debug.Log($"[LateUpdate] {currentCat} -> {targetCat} 교체 완료");
+                    // Debug.Log($"[LateUpdate] {currentCat} -> {targetCat} 교체 완료");
                 }
             }
             else
@@ -47,7 +47,7 @@ namespace GhostStory
                 {
                     string targetCat = currentCat.Replace("H_", "");
                     _sResolver.SetCategoryAndLabel(targetCat, currentLabel);
-                    Debug.Log($"[LateUpdate] {currentCat} -> {targetCat} 복구 완료");
+                    // Debug.Log($"[LateUpdate] {currentCat} -> {targetCat} 복구 완료");
                 }
             }
         }

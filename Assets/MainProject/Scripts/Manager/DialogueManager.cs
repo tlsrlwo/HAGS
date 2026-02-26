@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -18,16 +19,29 @@ namespace GhostStory
         [Header("대사창 UI")]
         [SerializeField] private GameObject _dialoguePanelPrefab;
 
+        #region 참조할 prefab 내 ui 컴포넌트들
+        [SerializeField] private GameObject _dialoguePanel;             // 대사창 오브젝트
+        [SerializeField] private TextMeshProUGUI _nameText;             // 이름 TextMeshProUGUI
+        [SerializeField] private TextMeshProUGUI _dialogueText;         // 대화내용 TextMeshProUGUI
+        [SerializeField] private Image _npcSpriteImage;                 // 사진 
+        #endregion
+
+
+        [Header("선택지 UI")]
+
+        #region 선택지 ui 내 참조할 컴포넌트들
+        [SerializeField] private GameObject _choicePanel;      // 선택지 패널
+        [SerializeField] private Button _leftButton;           // 왼쪽 버튼
+        [SerializeField] private Button _rightButton;          // 오른쪽 버튼
+        #endregion
+
+        public Button leftButton => _leftButton;
+
+        private int _currentSelection = 0;
+        private bool _isChoosing = false;
 
         [Header("참조")]
         [SerializeField] private PlayerInput _playerInput;
-
-
-        // 참조할 prefab 내 ui 컴포넌트들
-        [SerializeField] private GameObject _dialoguePanel;
-        [SerializeField] private TextMeshProUGUI _nameText; 
-        [SerializeField] private TextMeshProUGUI _dialogueText;
-        [SerializeField] private Image _npcSpriteImage;
 
         [Header("대화창 씹힘방지")]
         private float _lastDialogueStartTime;
@@ -35,6 +49,7 @@ namespace GhostStory
 
         [Header("대사 변수")]
         private Queue<string> _sentences = new Queue<string>();
+        private DialogueSO _currentDialogueSO;
 
         [Header("타이핑 효과")]
         [SerializeField] private float _typingSpeed = 0.03f;
@@ -49,6 +64,7 @@ namespace GhostStory
                 Instance = this;
                 DontDestroyOnLoad(this);
                 InitializeGlobalUI();
+                FindPlayerInput();
             }
             else
             {
@@ -58,25 +74,77 @@ namespace GhostStory
             _dialoguePanel.SetActive(false);
         }
 
+        private void Start()
+        {
+            var reader = FindAnyObjectByType<PlayerInputReader>();
+            if (reader != null)
+            {
+                reader.OnNavigationEvent += HandleNavigation;
+            }
+        }
+
+        private void OnDestroy()
+        {
+            var reader = FindAnyObjectByType<PlayerInputReader>();
+            if (reader != null)
+            {
+                reader.OnNavigationEvent -= HandleNavigation; // 구독 해제 [cite: 2026-02-24]
+            }
+        }
+
+        private void FindPlayerInput()
+        {
+            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+
+            if (playerObj != null)
+            {
+                _playerInput = playerObj.GetComponent<PlayerInput>();
+                Debug.Log("[DialogueManager] PlayerInput 컴포넌트 연결 완료.");
+            }
+            else if (playerObj == null)
+            {
+                Debug.LogWarning("[DialogueManager] PlayerInput 을 찾을 수 없음.");
+            }
+        }
+
+        public void ConnectPlayerInput(PlayerInput input)
+        {
+            _playerInput = input;
+        }
+
+
         private void InitializeGlobalUI()
         {
             // UI 프리팹을 생성해서 자식으로 둠
             GameObject uiObj = Instantiate(_dialoguePanelPrefab, transform);
             uiObj.name = "DialogueCanvas_Global";
 
-            // 생성된 UI오브젝트에서 각 필요한 요소 찾기
-            _dialoguePanel = uiObj.transform.Find("DialoguePanel").gameObject; // 이름으로 찾기 예시
-            _nameText = _dialoguePanel.transform.Find("NameText").GetComponent<TextMeshProUGUI>();
-            _dialogueText = _dialoguePanel.transform.Find("DialogueText").GetComponent<TextMeshProUGUI>();
-            _npcSpriteImage = _dialoguePanel.transform.Find("NpcImage").GetComponent<Image>();
+            DialogueUiReference refs = uiObj.GetComponent<DialogueUiReference>();
+
+            if (refs == null) return;
+
+            // UI 오브젝트에서 필요한 요소 연결
+            _dialoguePanel = refs.dialoguePanel;
+            _nameText = refs.nameText;
+            _dialogueText = refs.dialogueText;
+            _npcSpriteImage = refs.npcSpriteImage;
+
+
+            // 선택지 UI 오브텍트에서 필요한 요소 연결
+            _choicePanel = refs.choicePanel;
+            _leftButton = refs.leftButton;
+            _rightButton = refs.rightButton;
 
             // 처음에는 비활성화
             _dialoguePanel.SetActive(false);
+            _choicePanel.SetActive(false);
         }
 
-        public void ConnectPlayerInput(PlayerInput input)
+
+        public void StartDialogue(DialogueSO selectedDialogue)
         {
-            _playerInput = input;
+            // NPC 자리에 null을 넣어서 기존 함수를 호출
+            StartDialogue(null, selectedDialogue);
         }
 
         public void StartDialogue(Npc npc, DialogueSO selectedDialogue)
@@ -85,7 +153,7 @@ namespace GhostStory
             if (_playerInput == null)
             {
                 GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-                if (playerObj != null) _playerInput = playerObj.GetComponent<PlayerInput>();                
+                if (playerObj != null) _playerInput = playerObj.GetComponent<PlayerInput>();
             }
 
             // 그래도 없으면 로그 
@@ -102,27 +170,49 @@ namespace GhostStory
                 return;
             }
 
+
             isDialogueActive = true;
             _lastDialogueStartTime = Time.realtimeSinceStartup;             // 실제 시간 지정
 
             // 대사창 활성화
             if (_dialoguePanel != null) _dialoguePanel.SetActive(true);
-            else Debug.LogWarning("[DialogueManager] DialoguePanel 을 찾지 못함. Null Reference");
 
             // 컴포넌트 할당
-            _nameText.text = npc.npcName;
-            _npcSpriteImage.sprite = npc.npcSprite;
-
-            _currentInteractingNpc = npc.GetComponent<NpcController>();
-            if(_currentInteractingNpc != null)
+            if (npc != null)
             {
-                _currentInteractingNpc.OnDialogueStart();
+                if (!string.IsNullOrEmpty(npc.npcName)) _nameText.text = npc.npcName;
+                else _nameText.text = "";
+
+                if (npc.npcSprite != null)
+                {
+                    _npcSpriteImage.gameObject.SetActive(true);
+                    _npcSpriteImage.sprite = npc.npcSprite;
+                }
+                else
+                {
+                    _npcSpriteImage.gameObject.SetActive(false);
+                }
+
+                // npc 컨틀롤러 처리
+                _currentInteractingNpc = npc.GetComponent<NpcController>();
+
+                if (_currentInteractingNpc != null)
+                {
+                    _currentInteractingNpc.OnDialogueStart();
+                }
+            }
+            else
+            {
+                _nameText.text = "";
+                _npcSpriteImage.gameObject.SetActive(false);
+                _currentInteractingNpc = null;
             }
 
             // 플레이어의 인풋맵 변경
             if (_playerInput != null) _playerInput.SwitchCurrentActionMap("PlayerUI");
-            
-            Debug.Log("[DialogueManager]" + npc.npcName + " 대사 시작." );
+
+            // 현재 지정된 대화를 _currentDialogueSO 변수에 저장
+            _currentDialogueSO = selectedDialogue;
 
             // _sentences 에 기존에 있던 내용 제거 후, 각 대사들 변수에 추가
             _sentences.Clear();
@@ -151,7 +241,14 @@ namespace GhostStory
             // 남은 대사가 없으면 종료
             if (_sentences.Count == 0)
             {
-                EndDialogue();
+                if (_currentDialogueSO != null && _currentDialogueSO.dialogueChoices.Length > 0)
+                {
+                    ShowChoiceUI();
+                }
+                else
+                {
+                    EndDialogue();
+                }
                 return;
             }
 
@@ -221,13 +318,75 @@ namespace GhostStory
                 _playerInput.SwitchCurrentActionMap("PlayerMap");
             }
 
-            if(_currentInteractingNpc != null)
+            if (_currentInteractingNpc != null)
             {
                 _currentInteractingNpc.OnDialogueEnd();
                 _currentInteractingNpc = null;
             }
 
-            Debug.Log("[DialogueManager] 대사 종료.");
+            _currentDialogueSO = null;
+
+            // Debug.Log("[DialogueManager] 대사 종료.");
         }
+
+
+        #region 선택지 
+        public void HandleNavigation(Vector2 direction)
+        {
+            if (!isDialogueActive || !_isChoosing) return;
+
+            // 좌우 입력 처리
+            if (direction.x < 0) _currentSelection = 0;
+            else if (direction.x > 0) _currentSelection = 1;
+
+            UpdateSelectionVisuals();
+        }
+
+        private void UpdateSelectionVisuals()
+        {
+            Color selectedCol = Color.yellow;
+            Color defaultCol = Color.white;
+
+            TextMeshProUGUI leftText = _leftButton.GetComponentInChildren<TextMeshProUGUI>();
+            TextMeshProUGUI rightText = _rightButton.GetComponentInChildren<TextMeshProUGUI>();            
+
+            // 선택된 값에 따라 색상 변경
+            if (leftText != null) leftText.color = (_currentSelection == 0) ? selectedCol : defaultCol;
+            if (rightText != null) rightText.color = (_currentSelection == 1) ? selectedCol : defaultCol;
+        }
+
+        public void HandleSubmit()
+        {
+            if (!_isChoosing)
+            {
+                DisplayNextLine();
+                return;
+            }
+
+            // 현재 선택지 index 에 따라 해당 버튼 작동
+            if (_currentSelection == -1) return;
+
+            if (_currentSelection == 0) _leftButton.onClick.Invoke();
+            else if(_currentSelection == 1) _rightButton.onClick.Invoke();
+
+            _leftButton.onClick.RemoveAllListeners();
+            _rightButton.onClick.RemoveAllListeners();
+
+
+            // 선택 완료 후 초기화
+            _isChoosing = false;
+            _choicePanel.SetActive(false);
+
+            EndDialogue();
+        }
+
+        private void ShowChoiceUI()
+        {
+            _isChoosing = true;
+            _choicePanel.SetActive(true);
+            _currentSelection = -1; // 기본 선택을 아무것도 선택 안됨으로 초기화
+            UpdateSelectionVisuals(); // 초기 하이라이트 적용 
+        }
+        #endregion
     }
 }

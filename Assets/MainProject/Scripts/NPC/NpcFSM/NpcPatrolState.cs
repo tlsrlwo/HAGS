@@ -7,7 +7,7 @@ namespace GhostStory
     {        
         public override void EnterState(NpcController npc)
         {
-            Debug.Log($"[NpcIdleState] {npc.currentNpc.npcName} Patrol상태 진입");
+            // Debug.Log($"[NpcIdleState] {npc.currentNpc.npcName} Patrol상태 진입");
 
             npc.navAgent.isStopped = false;
             npc.navAgent.speed = npc.patrolSpeed;
