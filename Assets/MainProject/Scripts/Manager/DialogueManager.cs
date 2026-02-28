@@ -4,6 +4,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace GhostStory
@@ -74,6 +75,23 @@ namespace GhostStory
             _dialoguePanel.SetActive(false);
         }
 
+        private void OnEnable()
+        {
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+
+        private void OnDisable()
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+
+        }
+
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            InitializeGlobalUI();
+            Debug.Log("[DialogueManager] 씬 전환에 따른 UI 참조 갱신 완료");
+        }
+
         private void Start()
         {
             var reader = FindAnyObjectByType<PlayerInputReader>();
@@ -88,7 +106,7 @@ namespace GhostStory
             var reader = FindAnyObjectByType<PlayerInputReader>();
             if (reader != null)
             {
-                reader.OnNavigationEvent -= HandleNavigation; // 구독 해제 [cite: 2026-02-24]
+                reader.OnNavigationEvent -= HandleNavigation; 
             }
         }
 
@@ -110,6 +128,17 @@ namespace GhostStory
         public void ConnectPlayerInput(PlayerInput input)
         {
             _playerInput = input;
+
+            // 씬 전환 후 새로 생성된 플레이어의 Reader를 가져옵니다. 
+            var reader = input.GetComponent<PlayerInputReader>();
+            if (reader != null)
+            {
+                // 중요: 기존에 혹시 연결되어 있을지 모를(파괴된 객체 등) 연결을 해제하고 새로 연결합니다. 
+                reader.OnNavigationEvent -= HandleNavigation;
+                reader.OnNavigationEvent += HandleNavigation;
+
+                Debug.Log("[DialogueManager] 새 플레이어의 Navigation 이벤트를 성공적으로 연결했습니다.");
+            }
         }
 
 
@@ -227,6 +256,7 @@ namespace GhostStory
 
         public void DisplayNextLine(bool isFirstLine = false)
         {
+            // 키 입력이 들어오면 연출 건너뛰고 문장 완성
             if (_isTyping)
             {
                 CompleteSentence();
@@ -238,14 +268,15 @@ namespace GhostStory
                 if (Time.realtimeSinceStartup - _lastDialogueStartTime < _closeDelay) return;
             }
 
-            // 남은 대사가 없으면 종료
+            // 마지막 문장일 때
             if (_sentences.Count == 0)
             {
+                // 선택지가 존재하면
                 if (_currentDialogueSO != null && _currentDialogueSO.dialogueChoices.Length > 0)
                 {
                     ShowChoiceUI();
                 }
-                else
+                else    
                 {
                     EndDialogue();
                 }
@@ -331,6 +362,7 @@ namespace GhostStory
 
 
         #region 선택지 
+        // 입력값을 지정해줌
         public void HandleNavigation(Vector2 direction)
         {
             if (!isDialogueActive || !_isChoosing) return;
@@ -342,23 +374,27 @@ namespace GhostStory
             UpdateSelectionVisuals();
         }
 
+        // 선택지의 선택유무에 색상을 지정해줌
         private void UpdateSelectionVisuals()
         {
             Color selectedCol = Color.yellow;
             Color defaultCol = Color.white;
 
             TextMeshProUGUI leftText = _leftButton.GetComponentInChildren<TextMeshProUGUI>();
-            TextMeshProUGUI rightText = _rightButton.GetComponentInChildren<TextMeshProUGUI>();            
+            TextMeshProUGUI rightText = _rightButton.GetComponentInChildren<TextMeshProUGUI>();
 
             // 선택된 값에 따라 색상 변경
             if (leftText != null) leftText.color = (_currentSelection == 0) ? selectedCol : defaultCol;
             if (rightText != null) rightText.color = (_currentSelection == 1) ? selectedCol : defaultCol;
         }
 
+        // PlayerInputReader 에서 선택했을 때 실행
         public void HandleSubmit()
         {
+            // 선택지가 아니라면 
             if (!_isChoosing)
             {
+                // 다음 대사를 실행
                 DisplayNextLine();
                 return;
             }
@@ -367,7 +403,7 @@ namespace GhostStory
             if (_currentSelection == -1) return;
 
             if (_currentSelection == 0) _leftButton.onClick.Invoke();
-            else if(_currentSelection == 1) _rightButton.onClick.Invoke();
+            else if (_currentSelection == 1) _rightButton.onClick.Invoke();
 
             _leftButton.onClick.RemoveAllListeners();
             _rightButton.onClick.RemoveAllListeners();

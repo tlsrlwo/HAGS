@@ -9,7 +9,7 @@ namespace GhostStory
 
         public override void EnterState(NpcController npc)
         {
-            Debug.Log($"[NpcIdleState] {npc.currentNpc.npcName} Idle상태 진입");
+            // Debug.Log($"[NpcIdleState] {npc.currentNpc.npcName} Idle상태 진입");
             _waitTimer = 0f;
             _currentWaitTime = Random.Range(npc.minWaitTime, npc.maxWaitTime);
             npc.navAgent.isStopped = true;

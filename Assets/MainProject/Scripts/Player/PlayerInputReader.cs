@@ -10,8 +10,10 @@ namespace GhostStory
         public Vector2 MoveInput { get; private set; }
         public bool IsRunPressed { get; private set; }
 
-        // 이벤트 추가하
+        // 이벤트 추가하기
+        public event Action OnSubmitEvent;
         public event Action<Vector2> OnNavigationEvent;
+        
 
         // 플레이어 이동
         private void OnMove(InputValue value)
@@ -30,8 +32,10 @@ namespace GhostStory
         {
             if (!value.isPressed) return;
 
+            OnSubmitEvent?.Invoke();
+
             // 대화 중이라면 매니저에게 전달
-            if (DialogueManager.Instance.isDialogueActive)
+            if (DialogueManager.Instance != null && DialogueManager.Instance.isDialogueActive)
             {
                 Debug.Log("[PlayerInputReader] Submit 입력 감지");
                 DialogueManager.Instance.HandleSubmit();
@@ -52,6 +56,12 @@ namespace GhostStory
             {
                 // PlayerInput 컴포넌트를 넘겨줌
                 DialogueManager.Instance.ConnectPlayerInput(GetComponent<PlayerInput>());
+            }
+
+            if (SceneSelectorUI.Instance != null)
+            {
+                SceneSelectorUI.Instance.ConnectPlayerInput(GetComponent<PlayerInput>());
+
             }
         }
 

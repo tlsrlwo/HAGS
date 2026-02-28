@@ -108,10 +108,17 @@ namespace GhostStory
 
         private void CalculateGravity()
         {
-            if (!IsGrounded()) _yVelocity.y += _gravity * Time.deltaTime;
-            else if (_yVelocity.y < 0) _yVelocity.y = -2;                       // 오류 방지 & 바닥에 붙여놓기
+            if (IsGrounded() && _yVelocity.y < 0)
+            {
+                _yVelocity.y = -2f;
+            }
+            else
+            {
+                _yVelocity.y += _gravity * Time.deltaTime;
+            }
 
-            // CCon.Move(_yVelocity * Time.deltaTime);
+
+            CCon.Move(_yVelocity * Time.deltaTime);
         }
 
         private void OnDrawGizmos()
