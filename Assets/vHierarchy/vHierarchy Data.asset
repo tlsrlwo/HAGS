@@ -36,6 +36,14 @@ MonoBehaviour:
         - globalObjectIdString: GlobalObjectId_V1-2-30628ed736fa65143a3fbf4770e17dc9-1185832560777636179-1794577918
         - globalObjectIdString: GlobalObjectId_V1-2-30628ed736fa65143a3fbf4770e17dc9-9119327797733658257-1694074337
         - globalObjectIdString: GlobalObjectId_V1-2-30628ed736fa65143a3fbf4770e17dc9-1623672694-0
+        - globalObjectIdString: GlobalObjectId_V1-2-30628ed736fa65143a3fbf4770e17dc9-402422080-0
+        - globalObjectIdString: GlobalObjectId_V1-2-30628ed736fa65143a3fbf4770e17dc9-8292834058008622880-0
+        - globalObjectIdString: GlobalObjectId_V1-2-30628ed736fa65143a3fbf4770e17dc9-2050468161-0
+        - globalObjectIdString: GlobalObjectId_V1-2-30628ed736fa65143a3fbf4770e17dc9-704986802-0
+        - globalObjectIdString: GlobalObjectId_V1-2-30628ed736fa65143a3fbf4770e17dc9-222359328-0
+        - globalObjectIdString: GlobalObjectId_V1-2-30628ed736fa65143a3fbf4770e17dc9-2124668142-0
+        - globalObjectIdString: GlobalObjectId_V1-2-30628ed736fa65143a3fbf4770e17dc9-1991292943-0
+        - globalObjectIdString: GlobalObjectId_V1-2-30628ed736fa65143a3fbf4770e17dc9-419881304-0
         values:
         - colorIndex: 2
           iconNameOrGuid: 
@@ -45,7 +53,7 @@ MonoBehaviour:
           iconNameOrGuid: 
           isIconRecursive: 0
           isColorRecursive: 0
-        - colorIndex: 3
+        - colorIndex: 1
           iconNameOrGuid: Camera Icon
           isIconRecursive: 0
           isColorRecursive: 0
@@ -53,7 +61,7 @@ MonoBehaviour:
           iconNameOrGuid: 
           isIconRecursive: 0
           isColorRecursive: 0
-        - colorIndex: 3
+        - colorIndex: 1
           iconNameOrGuid: Camera Icon
           isIconRecursive: 0
           isColorRecursive: 0
@@ -77,11 +85,11 @@ MonoBehaviour:
           iconNameOrGuid: 
           isIconRecursive: 0
           isColorRecursive: 0
-        - colorIndex: 0
+        - colorIndex: 1
           iconNameOrGuid: Settings Icon
           isIconRecursive: 0
           isColorRecursive: 0
-        - colorIndex: 0
+        - colorIndex: 1
           iconNameOrGuid: Settings Icon
           isIconRecursive: 0
           isColorRecursive: 0
@@ -89,7 +97,39 @@ MonoBehaviour:
           iconNameOrGuid: 
           isIconRecursive: 0
           isColorRecursive: 0
-        - colorIndex: 2
+        - colorIndex: 1
+          iconNameOrGuid: 
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 1
+          iconNameOrGuid: Camera Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 3
+          iconNameOrGuid: 
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 1
+          iconNameOrGuid: 
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 1
+          iconNameOrGuid: 
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: Camera Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: Terrain Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: Settings Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 4
           iconNameOrGuid: 
           isIconRecursive: 0
           isColorRecursive: 0

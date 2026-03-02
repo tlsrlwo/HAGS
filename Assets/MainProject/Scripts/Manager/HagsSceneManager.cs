@@ -13,6 +13,9 @@ namespace GhostStory
         [SerializeField] private GameObject _playerPrefab;
         [SerializeField] private CanvasGroup _fadeCanvasGroup;
         [SerializeField] private float _fadeInDuration = 1.0f;
+
+        [SerializeField] private GameObject _mobileJoystickCanvas;
+
         private void Awake()
         {
             if (Instance == null)
@@ -52,8 +55,8 @@ namespace GhostStory
             if (player == null)
             {
                 player = Instantiate(_playerPrefab);
-            }
-
+            }             
+                        
             var pInput = player.GetComponent<PlayerInput>();
             if (DialogueManager.Instance != null) DialogueManager.Instance.ConnectPlayerInput(pInput);
             if (SceneSelectorUI.Instance != null) SceneSelectorUI.Instance.ConnectPlayerInput(pInput);
@@ -80,7 +83,7 @@ namespace GhostStory
             // 씬 안정화 대기
             yield return new WaitForSeconds(0.3f);
 
-            StartCoroutine(FadeIn(0));
+            StartCoroutine(FadeIn(0));          
         }
         
         private IEnumerator FadeIn(float targetAlpha)

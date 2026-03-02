@@ -34,6 +34,8 @@ namespace GhostStory
 
             OnSubmitEvent?.Invoke();
 
+            Debug.Log("[PlayerInputReader] 신호를 받고 OnSubmit 이 실행됨");
+
             // 대화 중이라면 매니저에게 전달
             if (DialogueManager.Instance != null && DialogueManager.Instance.isDialogueActive)
             {

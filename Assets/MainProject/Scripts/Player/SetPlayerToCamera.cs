@@ -9,20 +9,30 @@ namespace GhostStory
         {
             AssignCameraTarget();
         }
-        
-        public void AssignCameraTarget()
-        {
-            var vCam = GameObject.FindAnyObjectByType<CinemachineCamera>();
 
-            if (vCam != null)
+        public void AssignCameraTarget()
+        {           
+            var cameras = GameObject.FindObjectsByType<CinemachineCamera>(FindObjectsSortMode.None);
+
+            if (cameras.Length == 0)
             {
-                vCam.Follow = this.transform;
-                vCam.LookAt = this.transform;
+                Debug.LogError("[SetPlayerToCamera] 씬에서 Cinemachine 카메라를 찾을 수 없습니다.");
+                return;
             }
-            else
+
+            foreach (var cam in cameras)
             {
-                Debug.LogError("SetPlayerToCamera] 현재 씬에서 Cinemachine 카메라를 찾을 수 없습니다");
+
+                if (cam.CompareTag("MainCamera"))
+                {
+                    cam.Follow = this.transform;
+                    cam.LookAt = this.transform;
+                    Debug.Log($"[SetPlayerToCamera] {cam.name}에 플레이어 등록 완료!");
+                    return;
+                }
             }
+
+            Debug.LogWarning("[SetPlayerToCamera] MainCamera 태그를 가진 카메라를 찾지 못해 첫 번째 카메라를 할당합니다.");
         }
     }
 }

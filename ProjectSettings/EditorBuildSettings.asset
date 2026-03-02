@@ -9,9 +9,6 @@ EditorBuildSettings:
     path: Assets/MainProject/Scenes/BaekIlMong/Office_BaekIlMong.unity
     guid: 0b03619406694f443b6f6a766d1688a0
   - enabled: 1
-    path: Assets/MainProject/Scenes/BaekIlMongUnderGround/Office_BaekIlMongUnderGround.unity
-    guid: c56ac415b8cbbd64db730dc056f2c0a0
-  - enabled: 1
     path: Assets/MainProject/Scenes/DisasterManagingCenter/Office_DisasterManaging.unity
     guid: 30628ed736fa65143a3fbf4770e17dc9
   m_configObjects: {}
